@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentMigrator.API", "FluentMigrator.API\FluentMigrator.API.csproj", "{DFA346BE-4A90-46AD-881C-40266977B7FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentMigrator.Console", "FluentMigrator.Console\FluentMigrator.Console.csproj", "{1DFF9A38-BE3D-48EC-80CD-3CBC8BE05CAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFA346BE-4A90-46AD-881C-40266977B7FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFA346BE-4A90-46AD-881C-40266977B7FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFA346BE-4A90-46AD-881C-40266977B7FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFA346BE-4A90-46AD-881C-40266977B7FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DFF9A38-BE3D-48EC-80CD-3CBC8BE05CAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DFF9A38-BE3D-48EC-80CD-3CBC8BE05CAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DFF9A38-BE3D-48EC-80CD-3CBC8BE05CAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DFF9A38-BE3D-48EC-80CD-3CBC8BE05CAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F8BF5F2-E511-4AA2-84D3-A9FF8DBAD345}
+	EndGlobalSection
+EndGlobal
