@@ -1,9 +1,11 @@
+using FluentMigrator.Runner;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace FluentMigrator.API
 {
@@ -16,7 +18,6 @@ namespace FluentMigrator.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -25,9 +26,16 @@ namespace FluentMigrator.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FluentMigrator.API", Version = "v1" });
             });
+
+            services
+                .AddLogging(c => c.AddFluentMigratorConsole())
+                .AddFluentMigratorCore()
+                .ConfigureRunner(c => c
+                    .AddSqlServer2016()
+                    .WithGlobalConnectionString(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=User;Integrated Security=True;")
+                    .ScanIn(Assembly.GetExecutingAssembly()).For.All());
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -47,6 +55,22 @@ namespace FluentMigrator.API
             {
                 endpoints.MapControllers();
             });
+
+            app.Migrate();
+
+        }
+    }
+
+    public static class MigrationExtension
+    {
+        public static IApplicationBuilder Migrate(this IApplicationBuilder app)
+        {
+            using var scope = app.ApplicationServices.CreateScope();
+            var runner = scope.ServiceProvider.GetService<IMigrationRunner>();
+            runner.ListMigrations();
+            runner.MigrateUp();
+            //runner.MigrateDown(0);
+            return app;
         }
     }
 }
